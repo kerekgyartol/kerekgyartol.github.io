@@ -13,44 +13,90 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             min-height: 100vh;
-            background:
-                radial-gradient(
-                    circle at 50% 15%,
-                    #21103d 0%,
-                    #0b0b12 45%,
-                    #000000 100%
-                );
-
+            background: #020205;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 30px 20px;
+            overflow-x: hidden;
         }
+
+        /* BACKGROUND */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -30%;
+            background:
+                radial-gradient(
+                    circle at 30% 20%,
+                    rgba(0, 70, 255, .18),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 75% 65%,
+                    rgba(140, 0, 255, .18),
+                    transparent 28%
+                );
+
+            animation: backgroundMove 12s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    rgba(255,255,255,.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 100% 4px;
+            opacity: .12;
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                transform: translate(-2%, -2%) scale(1);
+            }
+
+            100% {
+                transform: translate(2%, 2%) scale(1.08);
+            }
+        }
+
+        /* MAIN */
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 55px 20px 35px;
             text-align: center;
         }
 
-        /* LKSF LOGO */
+        /* LOGO */
 
         .logo {
-            width: min(100%, 440px);
+            width: min(100%, 450px);
             height: auto;
-
             display: block;
-            margin: 0 auto 10px;
+            margin: 0 auto 15px;
 
             filter:
-                drop-shadow(0 0 10px rgba(0, 70, 255, 0.55))
-                drop-shadow(0 0 25px rgba(160, 0, 255, 0.40));
+                drop-shadow(0 0 12px rgba(0, 70, 255, .55))
+                drop-shadow(0 0 30px rgba(150, 0, 255, .35));
 
             animation: logoGlow 4s ease-in-out infinite;
         }
@@ -58,25 +104,23 @@
         @keyframes logoGlow {
             0%, 100% {
                 filter:
-                    drop-shadow(0 0 10px rgba(0, 70, 255, 0.50))
-                    drop-shadow(0 0 22px rgba(160, 0, 255, 0.30));
+                    drop-shadow(0 0 10px rgba(0, 70, 255, .50))
+                    drop-shadow(0 0 22px rgba(150, 0, 255, .30));
             }
 
             50% {
                 filter:
-                    drop-shadow(0 0 18px rgba(0, 100, 255, 0.75))
-                    drop-shadow(0 0 35px rgba(180, 0, 255, 0.55));
+                    drop-shadow(0 0 20px rgba(0, 100, 255, .80))
+                    drop-shadow(0 0 38px rgba(180, 0, 255, .55));
             }
         }
 
         .subtitle {
-            color: #aaa;
-
-            font-size: 13px;
-            letter-spacing: 5px;
+            color: #999;
+            font-size: 12px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-
-            margin-bottom: 38px;
+            margin-bottom: 40px;
         }
 
         /* BUTTONS */
@@ -84,97 +128,175 @@
         .buttons {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 14px;
         }
 
         .button {
+            position: relative;
             display: block;
             width: 100%;
 
             padding: 18px 24px;
 
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,.15);
             border-radius: 14px;
 
-            background: rgba(255, 255, 255, 0.055);
+            background: rgba(255,255,255,.045);
 
             color: white;
             text-decoration: none;
 
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
             letter-spacing: 2px;
 
             transition:
-                transform 0.25s ease,
-                background 0.25s ease,
-                border-color 0.25s ease,
-                box-shadow 0.25s ease;
+                transform .25s ease,
+                border-color .25s ease,
+                background .25s ease,
+                box-shadow .25s ease;
         }
 
         .button:hover {
             transform: translateY(-3px);
 
-            background: rgba(90, 40, 255, 0.18);
+            border-color: #865cff;
 
-            border-color: #8b5cff;
+            background: rgba(100,40,255,.15);
 
             box-shadow:
-                0 0 20px rgba(70, 60, 255, 0.30),
-                inset 0 0 20px rgba(180, 0, 255, 0.08);
+                0 0 25px rgba(80,50,255,.25);
         }
 
         /* MAIN BUTTON */
 
         .button.primary {
-            padding: 20px 24px;
+            padding: 21px 24px;
 
             font-size: 16px;
 
             background:
                 linear-gradient(
                     90deg,
-                    #073cff,
-                    #7b00ff
+                    #063bff,
+                    #7900ff
                 );
 
-            border-color: #665cff;
+            border-color: #705cff;
 
             box-shadow:
-                0 0 20px rgba(50, 70, 255, 0.40),
-                0 0 40px rgba(150, 0, 255, 0.20);
+                0 0 25px rgba(40,70,255,.40),
+                0 0 45px rgba(150,0,255,.18);
         }
 
         .button.primary:hover {
             background:
                 linear-gradient(
                     90deg,
-                    #164dff,
-                    #941cff
+                    #1450ff,
+                    #941aff
                 );
 
             box-shadow:
-                0 0 30px rgba(60, 80, 255, 0.60),
-                0 0 50px rgba(170, 0, 255, 0.35);
+                0 0 35px rgba(50,80,255,.60),
+                0 0 60px rgba(170,0,255,.35);
+        }
+
+        /* MUSIC SECTION */
+
+        .section {
+            margin-top: 65px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 5px;
+            color: #777;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .music-card {
+            padding: 25px 20px;
+
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.015)
+                );
+
+            box-shadow:
+                inset 0 0 30px rgba(100,0,255,.035);
+        }
+
+        .music-title {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .music-text {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* COMING SOON */
+
+        .coming {
+            margin-top: 16px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .coming-item {
+            padding: 16px 10px;
+
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 12px;
+
+            color: #555;
+
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+
+            background: rgba(255,255,255,.02);
+        }
+
+        .coming-item span {
+            display: block;
+            color: #333;
+            margin-top: 6px;
+            font-size: 8px;
         }
 
         /* FOOTER */
 
         .footer {
-            margin-top: 40px;
+            margin-top: 65px;
 
-            color: #444;
+            color: #3e3e3e;
 
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         /* MOBILE */
 
         @media (max-width: 480px) {
 
-            body {
-                padding: 25px 18px;
+            .container {
+                padding-top: 35px;
             }
 
             .logo {
@@ -182,17 +304,17 @@
             }
 
             .subtitle {
-                font-size: 10px;
-                letter-spacing: 3px;
+                font-size: 9px;
+                letter-spacing: 4px;
                 margin-bottom: 30px;
             }
 
-            .button {
-                padding: 16px 20px;
+            .section {
+                margin-top: 50px;
             }
 
-            .button.primary {
-                padding: 18px 20px;
+            .music-title {
+                font-size: 18px;
             }
         }
     </style>
@@ -212,18 +334,14 @@
         >
 
 
-        <!-- SUBTITLE -->
-
         <div class="subtitle">
             LK Sound Factory
         </div>
 
 
-        <!-- MUSIC LINKS -->
+        <!-- MAIN LINKS -->
 
         <div class="buttons">
-
-            <!-- MAIN MUSIC BUTTON -->
 
             <a
                 class="button primary"
@@ -236,8 +354,6 @@
             </a>
 
 
-            <!-- YOUTUBE -->
-
             <a
                 class="button"
                 href="https://www.youtube.com/@LKSF-w7j/podcasts"
@@ -248,8 +364,6 @@
 
             </a>
 
-
-            <!-- TIKTOK -->
 
             <a
                 class="button"
@@ -264,11 +378,56 @@
         </div>
 
 
+        <!-- MUSIC -->
+
+        <section class="section">
+
+            <div class="section-title">
+                Music
+            </div>
+
+            <div class="music-card">
+
+                <div class="music-title">
+                    LKSF SOUND FACTORY
+                </div>
+
+                <div class="music-text">
+                    Music, sound and future releases.
+                    More platforms coming soon.
+                </div>
+
+            </div>
+
+
+            <div class="coming">
+
+                <div class="coming-item">
+                    INSTAGRAM
+                    <span>COMING SOON</span>
+                </div>
+
+                <div class="coming-item">
+                    SOUNDCLOUD
+                    <span>COMING SOON</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
         <!-- FOOTER -->
 
         <div class="footer">
             © 2026 LKSF — LK SOUND FACTORY
         </div>
+
+    </main>
+
+</body>
+</html>
+
 
     </main>
 
