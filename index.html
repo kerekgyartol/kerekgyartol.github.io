@@ -1,570 +1,1067 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LKSF Music Archive</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #020205;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px 18px 50px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -30%;
+
+    background:
+        radial-gradient(circle at 20% 10%,
+            rgba(0,70,255,.20),
+            transparent 25%),
+        radial-gradient(circle at 80% 70%,
+            rgba(150,0,255,.20),
+            transparent 28%);
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo {
+    width: min(100%, 330px);
+    display: block;
+    margin: 0 auto 15px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0,70,255,.55))
+        drop-shadow(0 0 28px rgba(150,0,255,.35));
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search {
+    width: 100%;
+    padding: 18px 20px;
 
-    <title>LKSF Music Archive</title>
+    margin-bottom: 42px;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.13);
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    background: rgba(255,255,255,.045);
 
-        body {
-            min-height: 100vh;
-            background: #020205;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 35px 18px 50px;
-        }
+    color: #fff;
+    font-size: 14px;
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: -30%;
+    outline: none;
+}
 
-            background:
-                radial-gradient(
-                    circle at 25% 10%,
-                    rgba(0,70,255,.20),
-                    transparent 25%
-                ),
-                radial-gradient(
-                    circle at 80% 70%,
-                    rgba(145,0,255,.20),
-                    transparent 28%
-                );
+.search:focus {
+    border-color: #735cff;
+    box-shadow: 0 0 25px rgba(80,50,255,.20);
+}
 
-            pointer-events: none;
-            z-index: -1;
-        }
+.search::placeholder {
+    color: #555;
+}
 
-        .container {
-            width: 100%;
-            max-width: 760px;
-            margin: auto;
-        }
+/* =========================
+   SECTIONS
+========================= */
 
-        /* HEADER */
+.archive-section {
+    margin-bottom: 42px;
+}
 
-        .header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+.section-title {
+    margin-bottom: 16px;
 
-        .logo {
-            width: min(100%, 330px);
-            display: block;
-            margin: 0 auto 15px;
+    color: #777;
 
-            filter:
-                drop-shadow(0 0 12px rgba(0,70,255,.55))
-                drop-shadow(0 0 28px rgba(150,0,255,.35));
-        }
+    font-size: 10px;
+    font-weight: 900;
 
-        .title {
-            font-size: 25px;
-            font-weight: 900;
-            letter-spacing: 4px;
-        }
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
 
-        .subtitle {
-            margin-top: 10px;
+/* =========================
+   CATEGORY GRID
+========================= */
 
-            color: #777;
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+}
 
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
+.category {
+    position: relative;
 
-        /* SEARCH */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-        .search {
-            width: 100%;
+    min-height: 135px;
 
-            padding: 18px 20px;
+    padding: 20px 17px;
 
-            margin-bottom: 30px;
+    border-radius: 16px;
 
-            border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.09);
 
-            border: 1px solid rgba(255,255,255,.13);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(55,30,110,.20),
+            rgba(255,255,255,.025)
+        );
 
-            background: rgba(255,255,255,.045);
+    color: #fff;
+    text-decoration: none;
 
-            color: white;
+    overflow: hidden;
 
-            font-size: 14px;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
 
-            outline: none;
+.category::after {
+    content: "";
 
-            transition: .25s ease;
-        }
+    position: absolute;
 
-        .search:focus {
-            border-color: #725cff;
+    width: 100px;
+    height: 100px;
 
-            box-shadow:
-                0 0 25px rgba(90,60,255,.18);
-        }
+    right: -50px;
+    top: -50px;
 
-        .search::placeholder {
-            color: #555;
-        }
+    background: #5c00ff;
+    filter: blur(55px);
 
-        /* SECTION */
+    opacity: .12;
+}
 
-        .section-title {
-            color: #666;
+.category:hover {
+    transform: translateY(-4px);
 
-            font-size: 10px;
-            font-weight: 800;
+    border-color: #755cff;
 
-            letter-spacing: 5px;
+    box-shadow:
+        0 0 28px rgba(80,50,255,.22);
+}
 
-            margin-bottom: 15px;
+.category-name {
+    position: relative;
+    z-index: 1;
 
-            text-transform: uppercase;
-        }
+    font-size: 15px;
+    font-weight: 900;
 
-        /* CATEGORIES */
+    line-height: 1.25;
+}
 
-        .categories {
-            display: grid;
+.category-count {
+    position: relative;
+    z-index: 1;
 
-            grid-template-columns:
-                repeat(2, 1fr);
+    margin-top: 9px;
 
-            gap: 14px;
-        }
+    color: #806cff;
 
-        .category {
-            position: relative;
+    font-size: 9px;
+    font-weight: 800;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+    letter-spacing: 1.5px;
+}
 
-            min-height: 145px;
+.open {
+    position: relative;
+    z-index: 1;
 
-            padding: 22px 18px;
+    margin-top: 18px;
 
-            border-radius: 17px;
+    color: #777;
 
-            border: 1px solid rgba(255,255,255,.09);
+    font-size: 8px;
+    font-weight: 800;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(55,30,110,.20),
-                    rgba(255,255,255,.025)
-                );
+    letter-spacing: 1.5px;
+}
 
-            text-decoration: none;
+/* =========================
+   EMPTY
+========================= */
 
-            color: white;
+.no-results {
+    display: none;
 
-            overflow: hidden;
+    padding: 30px;
 
-            transition:
-                transform .25s ease,
-                border-color .25s ease,
-                box-shadow .25s ease;
-        }
+    text-align: center;
 
-        .category::after {
-            content: "";
+    color: #555;
 
-            position: absolute;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 14px;
+}
 
-            width: 100px;
-            height: 100px;
+/* =========================
+   BACK
+========================= */
 
-            right: -50px;
-            top: -50px;
+.back {
+    display: block;
 
-            background: #5c00ff;
+    width: fit-content;
 
-            filter: blur(55px);
+    margin: 45px auto 0;
 
-            opacity: .12;
-        }
+    color: #666;
 
-        .category:hover {
-            transform: translateY(-4px);
+    text-decoration: none;
 
-            border-color: #755cff;
+    font-size: 10px;
+    font-weight: 800;
 
-            box-shadow:
-                0 0 28px rgba(80,50,255,.20);
-        }
+    letter-spacing: 3px;
+}
 
-        .category-name {
-            position: relative;
-            z-index: 1;
+.back:hover {
+    color: #fff;
+}
 
-            font-size: 17px;
-            font-weight: 900;
+/* =========================
+   FOOTER
+========================= */
 
-            letter-spacing: 1px;
-        }
+.footer {
+    text-align: center;
 
-        .category-count {
-            position: relative;
-            z-index: 1;
+    margin-top: 40px;
 
-            margin-top: 8px;
+    color: #333;
 
-            color: #806cff;
+    font-size: 9px;
 
-            font-size: 10px;
-            font-weight: 800;
+    letter-spacing: 3px;
+}
 
-            letter-spacing: 2px;
-        }
+/* =========================
+   MOBILE
+========================= */
 
-        .open {
-            position: relative;
-            z-index: 1;
+@media (max-width: 700px) {
 
-            margin-top: 20px;
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-            color: #777;
+@media (max-width: 460px) {
 
-            font-size: 9px;
-            font-weight: 800;
+    body {
+        padding: 25px 15px 40px;
+    }
 
-            letter-spacing: 2px;
-        }
+    .categories {
+        grid-template-columns: 1fr;
+    }
 
-        /* NO RESULTS */
+    .category {
+        min-height: 120px;
+    }
 
-        .no-results {
-            display: none;
-
-            text-align: center;
-
-            padding: 35px;
-
-            color: #555;
-
-            border: 1px solid rgba(255,255,255,.06);
-
-            border-radius: 15px;
-
-            margin-top: 15px;
-        }
-
-        /* BACK */
-
-        .back {
-            display: block;
-
-            margin: 40px auto 0;
-
-            width: fit-content;
-
-            color: #666;
-
-            text-decoration: none;
-
-            font-size: 10px;
-            font-weight: 800;
-
-            letter-spacing: 3px;
-
-            transition: .2s ease;
-        }
-
-        .back:hover {
-            color: white;
-        }
-
-        /* FOOTER */
-
-        .footer {
-            text-align: center;
-
-            margin-top: 45px;
-
-            color: #333;
-
-            font-size: 9px;
-
-            letter-spacing: 3px;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 520px) {
-
-            .categories {
-                grid-template-columns: 1fr;
-            }
-
-            .category {
-                min-height: 125px;
-            }
-
-            .title {
-                font-size: 21px;
-            }
-        }
-    </style>
+    .title {
+        font-size: 22px;
+        letter-spacing: 4px;
+    }
+}
+</style>
 </head>
 
 
 <body>
 
-    <main class="container">
+<main class="container">
 
 
-        <!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
-        <header class="header">
+<header class="header">
 
-            <img
-                src="logo.png"
-                alt="LKSF — LK Sound Factory"
-                class="logo"
-            >
+    <img
+        src="logo.png"
+        alt="LKSF — LK Sound Factory"
+        class="logo"
+    >
 
-            <h1 class="title">
-                MUSIC ARCHIVE
-            </h1>
+    <h1 class="title">
+        MUSIC ARCHIVE
+    </h1>
 
-            <div class="subtitle">
-                LK Sound Factory · 3000+ Tracks
-            </div>
+    <div class="subtitle">
+        LK Sound Factory · 3000+ Tracks
+    </div>
 
-        </header>
+</header>
 
 
-        <!-- SEARCH -->
+<!-- =========================
+     SEARCH
+========================= -->
 
-        <input
-            type="search"
-            id="search"
-            class="search"
-            placeholder="Search collections..."
-            autocomplete="off"
-        >
+<input
+    type="search"
+    id="search"
+    class="search"
+    placeholder="Search collections..."
+    autocomplete="off"
+>
 
 
-        <!-- CATEGORIES -->
+<!-- =========================
+     MAIN GENRES
+========================= -->
 
-        <div class="section-title">
-            Collections
-        </div>
+<section class="archive-section">
 
+<div class="section-title">
+    🎧 Main Genres
+</div>
 
-        <div class="categories" id="categories">
+<div class="categories">
 
 
-            <!-- TECHNO -->
+<a
+class="category"
+data-name="techno"
+href="https://www.youtube.com/playlist?list=PLPGx1rxcqhDI"
+target="_blank"
+rel="noopener noreferrer">
 
-            <a
-                class="category"
-                data-name="techno"
-                href="https://www.youtube.com/playlist?list=PLPGx1rxcqhDI"
-                target="_blank"
-                rel="noopener noreferrer">
+<div>
+<div class="category-name">TECHNO</div>
+<div class="category-count">127 EPISODES</div>
+</div>
 
-                <div>
-                    <div class="category-name">
-                        TECHNO
-                    </div>
+<div class="open">OPEN COLLECTION →</div>
 
-                    <div class="category-count">
-                        127+ EPISODES
-                    </div>
-                </div>
+</a>
 
-                <div class="open">
-                    OPEN COLLECTION →
-                </div>
 
-            </a>
+<a
+class="category"
+data-name="house"
+href="https://www.youtube.com/playlist?list=PLMynOQow254EQJKwQCpS6vO2rmHGpN8pT"
+target="_blank"
+rel="noopener noreferrer">
 
+<div>
+<div class="category-name">HOUSE</div>
+<div class="category-count">104 EPISODES</div>
+</div>
 
-            <!-- HOUSE -->
+<div class="open">OPEN COLLECTION →</div>
 
-            <a
-                class="category"
-                data-name="house"
-                href="https://www.youtube.com/playlist?list=PLMynOQow254EQJKwQCpS6vO2rmHGpN8pT"
-                target="_blank"
-                rel="noopener noreferrer">
+</a>
 
-                <div>
-                    <div class="category-name">
-                        HOUSE
-                    </div>
 
-                    <div class="category-count">
-                        104+ EPISODES
-                    </div>
-                </div>
+<div
+class="category"
+data-name="hard techno">
 
-                <div class="open">
-                    OPEN COLLECTION →
-                </div>
+<div>
+<div class="category-name">HARD TECHNO</div>
+<div class="category-count">16 EPISODES</div>
+</div>
 
-            </a>
+<div class="open">COMING SOON</div>
 
+</div>
 
-            <!-- LKSF REMIX -->
 
-            <a
-                class="category"
-                data-name="lksf remix remix"
-                href="https://www.youtube.com/playlist?list=PLBE7fKGViA3s"
-                target="_blank"
-                rel="noopener noreferrer">
+<div
+class="category"
+data-name="peak time driving techno">
 
-                <div>
-                    <div class="category-name">
-                        LKSF REMIX
-                    </div>
+<div>
+<div class="category-name">PEAK TIME DRIVING TECHNO</div>
+<div class="category-count">14 EPISODES</div>
+</div>
 
-                    <div class="category-count">
-                        895+ EPISODES
-                    </div>
-                </div>
+<div class="open">COMING SOON</div>
 
-                <div class="open">
-                    OPEN COLLECTION →
-                </div>
+</div>
 
-            </a>
 
+<div
+class="category"
+data-name="psy tribal warehouse techno">
 
-            <!-- MASHUP -->
+<div>
+<div class="category-name">PSY TRIBAL WAREHOUSE TECHNO</div>
+<div class="category-count">8 EPISODES</div>
+</div>
 
-            <a
-                class="category"
-                data-name="lksf mashup mashup"
-                href="https://www.youtube.com/playlist?list=PLMynOQow254EPSsbTahNnHSQspC6yE8MM"
-                target="_blank"
-                rel="noopener noreferrer">
+<div class="open">COMING SOON</div>
 
-                <div>
-                    <div class="category-name">
-                        LKSF MASHUP
-                    </div>
+</div>
 
-                    <div class="category-count">
-                        149+ EPISODES
-                    </div>
-                </div>
 
-                <div class="open">
-                    OPEN COLLECTION →
-                </div>
+<div
+class="category"
+data-name="tech house">
 
-            </a>
+<div>
+<div class="category-name">TECH HOUSE</div>
+<div class="category-count">2026 COLLECTION</div>
+</div>
 
+<div class="open">COMING SOON</div>
 
-        </div>
+</div>
 
 
-        <div
-            id="noResults"
-            class="no-results">
+<div
+class="category"
+data-name="nu disco">
 
-            No collection found.
+<div>
+<div class="category-name">NU DISCO</div>
+<div class="category-count">8 EPISODES</div>
+</div>
 
-        </div>
+<div class="open">COMING SOON</div>
 
+</div>
 
-        <!-- BACK -->
 
-        <a
-            href="index.html"
-            class="back">
+<div
+class="category"
+data-name="latin house">
 
-            ← BACK TO LKSF
+<div>
+<div class="category-name">LATIN HOUSE</div>
+<div class="category-count">73 EPISODES</div>
+</div>
 
-        </a>
+<div class="open">COMING SOON</div>
 
+</div>
 
-        <div class="footer">
-            © 2026 LKSF — LK SOUND FACTORY
-        </div>
 
+<div
+class="category"
+data-name="funkyhouse funky house">
 
-    </main>
+<div>
+<div class="category-name">FUNKYHOUSE</div>
+<div class="category-count">13 EPISODES</div>
+</div>
 
+<div class="open">COMING SOON</div>
 
-    <!-- SEARCH SCRIPT -->
+</div>
 
-    <script>
 
-        const search =
-            document.getElementById("search");
+<div
+class="category"
+data-name="future rave">
 
-        const categories =
-            document.querySelectorAll(".category");
+<div>
+<div class="category-name">FUTURE RAVE</div>
+<div class="category-count">18 EPISODES</div>
+</div>
 
-        const noResults =
-            document.getElementById("noResults");
+<div class="open">COMING SOON</div>
 
+</div>
 
-        search.addEventListener("input", function () {
 
-            const query =
-                this.value
-                    .toLowerCase()
-                    .trim();
+<div
+class="category"
+data-name="trance">
 
-            let visible = 0;
+<div>
+<div class="category-name">TRANCE</div>
+<div class="category-count">7 EPISODES</div>
+</div>
 
+<div class="open">COMING SOON</div>
 
-            categories.forEach(function (category) {
+</div>
 
-                const name =
-                    category
-                        .dataset
-                        .name
-                        .toLowerCase();
 
+<div
+class="category"
+data-name="hiphop hip hop">
 
-                if (name.includes(query)) {
+<div>
+<div class="category-name">HIP HOP</div>
+<div class="category-count">13 EPISODES</div>
+</div>
 
-                    category.style.display =
-                        "flex";
+<div class="open">COMING SOON</div>
 
-                    visible++;
+</div>
 
-                } else {
 
-                    category.style.display =
-                        "none";
+<div
+class="category"
+data-name="old school hip hop">
 
-                }
+<div>
+<div class="category-name">OLD SCHOOL HIP HOP</div>
+<div class="category-count">34 EPISODES</div>
+</div>
 
-            });
+<div class="open">COMING SOON</div>
 
+</div>
 
-            if (visible === 0) {
 
-                noResults.style.display =
-                    "block";
+<div
+class="category"
+data-name="modern trap rap trap rap">
 
-            } else {
+<div>
+<div class="category-name">MODERN TRAP-RAP</div>
+<div class="category-count">48 EPISODES</div>
+</div>
 
-                noResults.style.display =
-                    "none";
+<div class="open">COMING SOON</div>
 
-            }
+</div>
 
-        });
 
-    </script>
+<div
+class="category"
+data-name="rap">
+
+<div>
+<div class="category-name">RAP</div>
+<div class="category-count">16 EPISODES</div>
+</div>
+
+<div class="open">COMING SOON</div>
+
+</div>
+
+
+<div
+class="category"
+data-name="rock">
+
+<div>
+<div class="category-name">ROCK</div>
+<div class="category-count">42 EPISODES</div>
+</div>
+
+<div class="open">COMING SOON</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================
+     COLLECTIONS
+========================= -->
+
+<section class="archive-section">
+
+<div class="section-title">
+    🌴 Collections
+</div>
+
+<div class="categories">
+
+
+<div class="category" data-name="ibiza after dark">
+<div>
+<div class="category-name">IBIZA AFTER DARK</div>
+<div class="category-count">14 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="summer vibes">
+<div>
+<div class="category-name">SUMMER VIBES</div>
+<div class="category-count">159 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="summer heat">
+<div>
+<div class="category-name">SUMMER HEAT</div>
+<div class="category-count">9 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="king of the summer">
+<div>
+<div class="category-name">KING OF THE SUMMER</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="beach party transformation">
+<div>
+<div class="category-name">BEACH PARTY TRANSFORMATION</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="after dark">
+<div>
+<div class="category-name">AFTER DARK</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="beyond ibiza">
+<div>
+<div class="category-name">BEYOND IBIZA</div>
+<div class="category-count">13 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="september frequency">
+<div>
+<div class="category-name">SEPTEMBER FREQUENCY</div>
+<div class="category-count">27 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="travel memories">
+<div>
+<div class="category-name">TRAVEL MEMORIES</div>
+<div class="category-count">21 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="around the world countries cities">
+<div>
+<div class="category-name">AROUND THE WORLD</div>
+<div class="category-count">62 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="80s life">
+<div>
+<div class="category-name">80'S LIFE</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="80s vibe">
+<div>
+<div class="category-name">80'S VIBE</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================
+     SPECIAL
+========================= -->
+
+<section class="archive-section">
+
+<div class="section-title">
+    🔥 Special Collections
+</div>
+
+<div class="categories">
+
+
+<a
+class="category"
+data-name="lksf remix remix"
+href="https://www.youtube.com/playlist?list=PLBE7fKGViA3s"
+target="_blank"
+rel="noopener noreferrer">
+
+<div>
+<div class="category-name">LKSF REMIX</div>
+<div class="category-count">895 EPISODES</div>
+</div>
+
+<div class="open">OPEN COLLECTION →</div>
+
+</a>
+
+
+<a
+class="category"
+data-name="lksf mashup mashup"
+href="https://www.youtube.com/playlist?list=PLMynOQow254EPSsbTahNnHSQspC6yE8MM"
+target="_blank"
+rel="noopener noreferrer">
+
+<div>
+<div class="category-name">LKSF MASHUP</div>
+<div class="category-count">149 EPISODES</div>
+</div>
+
+<div class="open">OPEN COLLECTION →</div>
+
+</a>
+
+
+<div class="category" data-name="saxophone remix">
+<div>
+<div class="category-name">SAXOPHONE REMIX</div>
+<div class="category-count">13 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="afro house saxophone remix">
+<div>
+<div class="category-name">AFRO HOUSE SAXOPHONE REMIX</div>
+<div class="category-count">44 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="eva 90s love series">
+<div>
+<div class="category-name">EVA · 90'S LOVE SERIES</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="ritual trilogy">
+<div>
+<div class="category-name">THE RITUAL TRILOGY +1</div>
+<div class="category-count">4 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="bedroom secrets">
+<div>
+<div class="category-name">BEDROOM SECRETS</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="guilty side">
+<div>
+<div class="category-name">THE GUILTY SIDE</div>
+<div class="category-count">18 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="luxury wife">
+<div>
+<div class="category-name">LUXURY WIFE</div>
+<div class="category-count">13 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="milf mode">
+<div>
+<div class="category-name">MILF MODE</div>
+<div class="category-count">18 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="erotic">
+<div>
+<div class="category-name">EROTIC</div>
+<div class="category-count">27 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="horror">
+<div>
+<div class="category-name">HORROR</div>
+<div class="category-count">13 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="asmr">
+<div>
+<div class="category-name">ASMR</div>
+<div class="category-count">9 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================
+     PLACES / STORIES
+========================= -->
+
+<section class="archive-section">
+
+<div class="section-title">
+    🌍 Places & Stories
+</div>
+
+<div class="categories">
+
+
+<div class="category" data-name="italia after dark">
+<div>
+<div class="category-name">ITALIA AFTER DARK</div>
+<div class="category-count">7 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="greek nights">
+<div>
+<div class="category-name">GREEK NIGHTS</div>
+<div class="category-count">10 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="evia karystos aspra chomata villas">
+<div>
+<div class="category-name">EVIA · KARYSTOS</div>
+<div class="category-count">19 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="german">
+<div>
+<div class="category-name">GERMAN</div>
+<div class="category-count">59 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="home club bed club bed beach">
+<div>
+<div class="category-name">HOME CLUB · BED CLUB</div>
+<div class="category-count">66 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="pinsel pirate">
+<div>
+<div class="category-name">PINSEL PIRATE</div>
+<div class="category-count">2 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="raj yellow storm swarm">
+<div>
+<div class="category-name">RAJ · YELLOW STORM</div>
+<div class="category-count">8 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+
+<div class="category" data-name="részeges mulatós">
+<div>
+<div class="category-name">RÉSZEGES MULATÓS</div>
+<div class="category-count">14 EPISODES</div>
+</div>
+<div class="open">COMING SOON</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================
+     NO RESULTS
+========================= -->
+
+<div
+id="noResults"
+class="no-results">
+
+No collection found.
+
+</div>
+
+
+<a
+href="index.html"
+class="back">
+
+← BACK TO LKSF
+
+</a>
+
+
+<div class="footer">
+© 2026 LKSF — LK SOUND FACTORY
+</div>
+
+
+</main>
+
+
+<script>
+
+const search =
+document.getElementById("search");
+
+const categories =
+document.querySelectorAll(".category");
+
+const noResults =
+document.getElementById("noResults");
+
+
+search.addEventListener("input", function () {
+
+    const query =
+        this.value
+            .toLowerCase()
+            .trim();
+
+    let visible = 0;
+
+
+    categories.forEach(function(category) {
+
+        const name =
+            category.dataset.name
+                .toLowerCase();
+
+        if (name.includes(query)) {
+
+            category.style.display =
+                "flex";
+
+            visible++;
+
+        } else {
+
+            category.style.display =
+                "none";
+        }
+
+    });
+
+
+    if (visible === 0) {
+
+        noResults.style.display =
+            "block";
+
+    } else {
+
+        noResults.style.display =
+            "none";
+    }
+
+});
+
+</script>
 
 </body>
 </html>
