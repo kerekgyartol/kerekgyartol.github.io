@@ -25,7 +25,9 @@
             overflow-x: hidden;
         }
 
-        /* BACKGROUND */
+        /* =========================
+           BACKGROUND
+        ========================== */
 
         body::before {
             content: "";
@@ -78,7 +80,9 @@
             }
         }
 
-        /* MAIN */
+        /* =========================
+           MAIN
+        ========================== */
 
         .container {
             width: 100%;
@@ -88,7 +92,9 @@
             text-align: center;
         }
 
-        /* LOGO */
+        /* =========================
+           LOGO
+        ========================== */
 
         .logo {
             width: min(100%, 450px);
@@ -125,7 +131,9 @@
             margin-bottom: 38px;
         }
 
-        /* BUTTONS */
+        /* =========================
+           MAIN BUTTONS
+        ========================== */
 
         .buttons {
             display: flex;
@@ -169,8 +177,6 @@
                 0 0 25px rgba(80,50,255,.25);
         }
 
-        /* PRIMARY */
-
         .button.primary {
             padding: 21px 24px;
 
@@ -197,11 +203,17 @@
                     #1450ff,
                     #941aff
                 );
+
+            box-shadow:
+                0 0 35px rgba(50,80,255,.60),
+                0 0 60px rgba(170,0,255,.35);
         }
 
-        /* MUSIC HUB */
+        /* =========================
+           MUSIC ARCHIVE
+        ========================== */
 
-        .music-hub {
+        .archive {
             margin-top: 65px;
         }
 
@@ -214,12 +226,12 @@
             margin-bottom: 18px;
         }
 
-        .hub-card {
+        .archive-card {
             position: relative;
 
             padding: 30px 22px;
 
-            border: 1px solid rgba(120,80,255,.20);
+            border: 1px solid rgba(120,80,255,.22);
             border-radius: 20px;
 
             background:
@@ -236,7 +248,7 @@
             overflow: hidden;
         }
 
-        .hub-card::before {
+        .archive-card::before {
             content: "";
 
             position: absolute;
@@ -254,17 +266,30 @@
             opacity: .18;
         }
 
-        .hub-title {
+        .archive-title {
             position: relative;
 
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 900;
             letter-spacing: 2px;
 
             margin-bottom: 10px;
         }
 
-        .hub-description {
+        .archive-count {
+            position: relative;
+
+            color: #8c6cff;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 16px;
+        }
+
+        .archive-text {
             position: relative;
 
             color: #777;
@@ -275,74 +300,64 @@
             margin-bottom: 24px;
         }
 
-        /* RELEASE */
-
-        .release {
+        .archive-button {
             position: relative;
 
-            text-align: left;
+            display: block;
 
-            padding: 18px;
+            padding: 17px 20px;
 
-            border-radius: 14px;
+            border-radius: 12px;
 
-            background: rgba(0,0,0,.28);
+            background: rgba(255,255,255,.07);
 
-            border: 1px solid rgba(255,255,255,.07);
-        }
+            border: 1px solid rgba(255,255,255,.14);
 
-        .release-label {
-            color: #666;
+            color: white;
 
-            font-size: 9px;
+            text-decoration: none;
+
+            font-size: 12px;
             font-weight: 800;
-            letter-spacing: 3px;
 
-            margin-bottom: 7px;
-        }
-
-        .release-title {
-            font-size: 17px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .release-status {
-            display: inline-block;
-
-            margin-top: 10px;
-
-            padding: 5px 9px;
-
-            border-radius: 20px;
-
-            color: #8f7cff;
-
-            background: rgba(110,70,255,.10);
-
-            border: 1px solid rgba(130,90,255,.20);
-
-            font-size: 8px;
-            font-weight: 800;
             letter-spacing: 2px;
+
+            transition: .25s ease;
         }
 
-        /* FUTURE PLATFORMS */
+        .archive-button:hover {
+            transform: translateY(-2px);
 
-        .platforms {
+            background: linear-gradient(
+                90deg,
+                #073cff,
+                #7900ff
+            );
+
+            border-color: #705cff;
+
+            box-shadow:
+                0 0 25px rgba(80,50,255,.35);
+        }
+
+        /* =========================
+           FUTURE PLATFORMS
+        ========================== */
+
+        .future {
+            margin-top: 18px;
+
             display: grid;
 
             grid-template-columns: 1fr 1fr;
 
             gap: 12px;
-
-            margin-top: 14px;
         }
 
-        .platform {
+        .future-item {
             padding: 16px 10px;
 
-            border: 1px solid rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.06);
             border-radius: 12px;
 
             background: rgba(255,255,255,.02);
@@ -351,10 +366,11 @@
 
             font-size: 10px;
             font-weight: 800;
+
             letter-spacing: 2px;
         }
 
-        .platform span {
+        .future-item span {
             display: block;
 
             margin-top: 7px;
@@ -362,10 +378,13 @@
             color: #333;
 
             font-size: 8px;
+
             letter-spacing: 1px;
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================== */
 
         .footer {
             margin-top: 60px;
@@ -373,12 +392,15 @@
             color: #3e3e3e;
 
             font-size: 9px;
+
             letter-spacing: 3px;
 
             text-transform: uppercase;
         }
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================== */
 
         @media (max-width: 480px) {
 
@@ -396,12 +418,12 @@
                 margin-bottom: 30px;
             }
 
-            .music-hub {
+            .archive {
                 margin-top: 50px;
             }
 
-            .hub-title {
-                font-size: 19px;
+            .archive-title {
+                font-size: 20px;
             }
         }
     </style>
@@ -471,62 +493,60 @@
 
 
         <!-- =========================
-             MUSIC HUB
+             MUSIC ARCHIVE
         ========================== -->
 
-        <section class="music-hub">
+        <section class="archive">
 
             <div class="section-label">
-                Music Hub
+                Music Archive
             </div>
 
 
-            <div class="hub-card">
+            <div class="archive-card">
 
-                <div class="hub-title">
-                    LKSF SOUND FACTORY
+                <div class="archive-title">
+                    LKSF MUSIC
                 </div>
 
 
-                <div class="hub-description">
-                    Music, sound and future releases
-                    from LK Sound Factory.
+                <div class="archive-count">
+                    3000+ TRACKS
                 </div>
 
 
-                <!-- LATEST RELEASE -->
-
-                <div class="release">
-
-                    <div class="release-label">
-                        LATEST RELEASE
-                    </div>
-
-                    <div class="release-title">
-                        Coming Soon
-                    </div>
-
-                    <div class="release-status">
-                        NEW MUSIC
-                    </div>
-
+                <div class="archive-text">
+                    A growing collection of music,
+                    sounds and productions from
+                    LK Sound Factory.
                 </div>
 
 
-                <!-- FUTURE PLATFORMS -->
+                <a
+                    class="archive-button"
+                    href="https://www.youtube.com/@LKSF-w7j/podcasts"
+                    target="_blank"
+                    rel="noopener noreferrer">
 
-                <div class="platforms">
+                    OPEN MUSIC ARCHIVE
 
-                    <div class="platform">
-                        INSTAGRAM
-                        <span>COMING SOON</span>
-                    </div>
+                </a>
 
-                    <div class="platform">
-                        SOUNDCLOUD
-                        <span>COMING SOON</span>
-                    </div>
+            </div>
 
+
+            <!-- FUTURE PLATFORMS -->
+
+            <div class="future">
+
+                <div class="future-item">
+                    INSTAGRAM
+                    <span>COMING SOON</span>
+                </div>
+
+                <div class="future-item">
+                    SOUNDCLOUD
+                    <span>COMING SOON</span>
                 </div>
 
             </div>
@@ -541,6 +561,13 @@
         <div class="footer">
             © 2026 LKSF — LK SOUND FACTORY
         </div>
+
+
+    </main>
+
+</body>
+</html>
+
 
 
     </main>
