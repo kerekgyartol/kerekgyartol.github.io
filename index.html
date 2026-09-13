@@ -1,152 +1,174 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LKSF — LK Sound Factory</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    <title>LKSF — LK Sound Factory</title>
 
-    body {
-        min-height: 100vh;
-        background:
-            radial-gradient(circle at top, #242424 0%, #0d0d0d 45%, #000000 100%);
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-        width: 100%;
-        max-width: 520px;
-        text-align: center;
-    }
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 50% 20%, #17102b 0%, #08080d 45%, #000 100%);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
 
-    .logo {
-        font-size: 52px;
-        font-weight: 900;
-        letter-spacing: 8px;
-        margin-bottom: 8px;
-    }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
 
-    .subtitle {
-        color: #999;
-        font-size: 14px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        margin-bottom: 45px;
-    }
-
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .button {
-        display: block;
-        width: 100%;
-        padding: 18px 24px;
-        border: 1px solid #444;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        transition: all 0.25s ease;
-    }
-
-    .button:hover {
-        background: white;
-        color: black;
-        border-color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
-    }
-
-    .button.primary {
-        background: white;
-        color: black;
-        border-color: white;
-        padding: 20px 24px;
-        font-size: 17px;
-    }
-
-    .button.primary:hover {
-        background: #e6e6e6;
-        transform: translateY(-3px);
-        box-shadow: 0 12px 35px rgba(255, 255, 255, 0.25);
-    }
-
-    .footer {
-        margin-top: 45px;
-        color: #555;
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
-
-    @media (max-width: 480px) {
         .logo {
-            font-size: 40px;
-            letter-spacing: 6px;
+            width: min(100%, 430px);
+            height: auto;
+            display: block;
+            margin: 0 auto 15px;
+            filter:
+                drop-shadow(0 0 12px rgba(0, 80, 255, .45))
+                drop-shadow(0 0 25px rgba(180, 0, 255, .30));
         }
 
         .subtitle {
-            font-size: 11px;
-            letter-spacing: 3px;
-            margin-bottom: 35px;
+            color: #aaa;
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 38px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .button {
-            padding: 16px 20px;
+            display: block;
+            width: 100%;
+            padding: 18px 24px;
+            border: 1px solid #333;
+            border-radius: 14px;
+            background: rgba(255,255,255,.06);
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            transition: .25s ease;
+            box-shadow: inset 0 0 20px rgba(255,255,255,.02);
         }
-    }
-</style>
 
-</head> <body>
-<main class="container">
+        .button:hover {
+            transform: translateY(-3px);
+            border-color: #8b5cff;
+            background: rgba(100,40,255,.15);
+            box-shadow:
+                0 0 20px rgba(80,60,255,.25),
+                inset 0 0 20px rgba(180,0,255,.08);
+        }
 
-    <div class="logo">LKSF</div>
+        .button.primary {
+            background: linear-gradient(90deg, #073cff, #7b00ff);
+            border-color: #6c5cff;
+            box-shadow:
+                0 0 20px rgba(50,70,255,.35),
+                0 0 40px rgba(150,0,255,.18);
+            padding: 20px 24px;
+            font-size: 16px;
+        }
 
-    <div class="subtitle">
-        LK Sound Factory
-    </div>
+        .button.primary:hover {
+            background: linear-gradient(90deg, #164dff, #941cff);
+            box-shadow:
+                0 0 30px rgba(60,80,255,.55),
+                0 0 50px rgba(170,0,255,.30);
+        }
 
-    <div class="buttons">
+        .footer {
+            margin-top: 40px;
+            color: #444;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
 
-        <a class="button primary"
-           href="https://www.youtube.com/@LKSF-w7j/podcasts"
-           target="_blank"
-           rel="noopener noreferrer">
-            Listen to my music
-        </a>
+        @media (max-width: 480px) {
+            body {
+                padding: 25px 18px;
+            }
 
-        <a class="button"
-           href="https://www.youtube.com/@LKSF-w7j/podcasts"
-           target="_blank"
-           rel="noopener noreferrer">
-            YouTube
-        </a>
+            .logo {
+                width: 100%;
+            }
 
-        <a class="button"
-           href="https://www.tiktok.com/@lksoundfactory00?is_from_webapp=1&sender_device=pc"
-           target="_blank"
-           rel="noopener noreferrer">
-            TikTok
-        </a>
+            .subtitle {
+                font-size: 10px;
+                letter-spacing: 3px;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
 
-    </div>
+<body>
 
-    <div class="footer">
-        © 2026 LKSF — LK SOUND FACTORY
-    </div>
+    <main class="container">
 
-</main>
+        <img
+            src="logo.png"
+            alt="LKSF — LK Sound Factory"
+            class="logo"
+        >
 
-</body> </html>
+        <div class="subtitle">
+            LK Sound Factory
+        </div>
+
+        <div class="buttons">
+
+            <a
+                class="button primary"
+                href="https://www.youtube.com/@LKSF-w7j/podcasts"
+                target="_blank"
+                rel="noopener noreferrer">
+                LISTEN TO MY MUSIC
+            </a>
+
+            <a
+                class="button"
+                href="https://www.youtube.com/@LKSF-w7j/podcasts"
+                target="_blank"
+                rel="noopener noreferrer">
+                YOUTUBE
+            </a>
+
+            <a
+                class="button"
+                href="https://www.tiktok.com/@lksoundfactory00?is_from_webapp=1&sender_device=pc"
+                target="_blank"
+                rel="noopener noreferrer">
+                TIKTOK
+            </a>
+
+        </div>
+
+        <div class="footer">
+            © 2026 LKSF — LK SOUND FACTORY
+        </div>
+
+    </main>
+
+</body>
+</html>
