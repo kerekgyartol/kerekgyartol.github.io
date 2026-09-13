@@ -1,14 +1,296 @@
+```html
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKSF</title>
+
+    <title>LKSF | Music • DJ • Producer</title>
+    <meta name="description" content="LKSF – DJ • Producer • Electronic Music">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050708;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                radial-gradient(circle at 50% 35%, rgba(0, 190, 180, 0.18), transparent 35%),
+                linear-gradient(180deg, #071012 0%, #030506 100%);
+        }
+
+        .hero-content {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .eyebrow {
+            letter-spacing: 7px;
+            font-size: 12px;
+            color: #67e6df;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(70px, 18vw, 150px);
+            line-height: 0.85;
+            letter-spacing: 8px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-shadow:
+                0 0 20px rgba(0, 255, 240, 0.18),
+                0 0 60px rgba(0, 255, 240, 0.08);
+        }
+
+        .tagline {
+            font-size: 16px;
+            letter-spacing: 5px;
+            color: #aebbbb;
+            text-transform: uppercase;
+            margin-bottom: 45px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 340px;
+            margin: auto;
+        }
+
+        .button {
+            display: block;
+            padding: 17px 25px;
+            border: 1px solid rgba(103, 230, 223, 0.45);
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-size: 13px;
+            text-transform: uppercase;
+            transition: 0.25s ease;
+            background: rgba(255,255,255,0.025);
+        }
+
+        .button:hover {
+            background: rgba(103, 230, 223, 0.12);
+            border-color: #67e6df;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(103, 230, 223, 0.12);
+        }
+
+        .primary {
+            background: #67e6df;
+            color: #031011;
+            border-color: #67e6df;
+            font-weight: bold;
+        }
+
+        .primary:hover {
+            background: #ffffff;
+            border-color: #ffffff;
+            color: #031011;
+        }
+
+        /* MUSIC */
+
+        section {
+            padding: 90px 20px;
+        }
+
+        .section-inner {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #879393;
+            font-size: 14px;
+            margin-bottom: 45px;
+        }
+
+        .music-card {
+            border: 1px solid #182526;
+            background: #080d0e;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .music-card h3 {
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .music-card p {
+            color: #899696;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #111a1b;
+            padding: 35px 20px;
+            text-align: center;
+            color: #586364;
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .scroll {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #506061;
+            font-size: 10px;
+            letter-spacing: 4px;
+        }
+
+        @media (max-width: 600px) {
+
+            h1 {
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                font-size: 12px;
+                letter-spacing: 3px;
+            }
+
+            section {
+                padding: 70px 18px;
+            }
+
+            .music-card {
+                padding: 25px 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>LKSF</h1>
-    <p>Music • DJ • Producer</p>
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                DJ • Producer • Electronic Music
+            </div>
+
+            <h1>LKSF</h1>
+
+            <div class="tagline">
+                Music beyond the ordinary
+            </div>
+
+            <div class="buttons">
+
+                <!-- IDE ÍRD MAJD A SAJÁT LINKJEIDET -->
+
+                <a class="button primary" href="#" target="_blank">
+                    Listen to my music
+                </a>
+
+                <a class="button" href="#" target="_blank">
+                    YouTube
+                </a>
+
+                <a class="button" href="#" target="_blank">
+                    Instagram
+                </a>
+
+                <a class="button" href="#" target="_blank">
+                    SoundCloud
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="scroll">
+            SCROLL
+        </div>
+
+    </section>
+
+
+    <!-- MUSIC -->
+
+    <section>
+
+        <div class="section-inner">
+
+            <div class="section-title">
+                LKSF
+            </div>
+
+            <div class="section-subtitle">
+                DJ • Producer • Electronic Music
+            </div>
+
+            <div class="music-card">
+
+                <h3>THE MUSIC</h3>
+
+                <p>
+                    Electronic sounds, club energy and long nights.
+                    Music created for the dancefloor.
+                </p>
+
+                <a class="button" href="#" target="_blank">
+                    Explore
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 LKSF • ALL RIGHTS RESERVED
+    </footer>
 
 </body>
 </html>
+```
