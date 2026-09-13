@@ -16,12 +16,20 @@
         body {
             min-height: 100vh;
             background:
-                radial-gradient(circle at 50% 20%, #17102b 0%, #08080d 45%, #000 100%);
+                radial-gradient(
+                    circle at 50% 15%,
+                    #21103d 0%,
+                    #0b0b12 45%,
+                    #000000 100%
+                );
+
             color: white;
             font-family: Arial, Helvetica, sans-serif;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             padding: 30px 20px;
         }
 
@@ -31,23 +39,47 @@
             text-align: center;
         }
 
+        /* LKSF LOGO */
+
         .logo {
-            width: min(100%, 430px);
+            width: min(100%, 440px);
             height: auto;
+
             display: block;
-            margin: 0 auto 15px;
+            margin: 0 auto 10px;
+
             filter:
-                drop-shadow(0 0 12px rgba(0, 80, 255, .45))
-                drop-shadow(0 0 25px rgba(180, 0, 255, .30));
+                drop-shadow(0 0 10px rgba(0, 70, 255, 0.55))
+                drop-shadow(0 0 25px rgba(160, 0, 255, 0.40));
+
+            animation: logoGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                filter:
+                    drop-shadow(0 0 10px rgba(0, 70, 255, 0.50))
+                    drop-shadow(0 0 22px rgba(160, 0, 255, 0.30));
+            }
+
+            50% {
+                filter:
+                    drop-shadow(0 0 18px rgba(0, 100, 255, 0.75))
+                    drop-shadow(0 0 35px rgba(180, 0, 255, 0.55));
+            }
         }
 
         .subtitle {
             color: #aaa;
+
             font-size: 13px;
             letter-spacing: 5px;
             text-transform: uppercase;
+
             margin-bottom: 38px;
         }
+
+        /* BUTTONS */
 
         .buttons {
             display: flex;
@@ -58,53 +90,89 @@
         .button {
             display: block;
             width: 100%;
+
             padding: 18px 24px;
+
             border: 1px solid #333;
             border-radius: 14px;
-            background: rgba(255,255,255,.06);
+
+            background: rgba(255, 255, 255, 0.055);
+
             color: white;
             text-decoration: none;
+
             font-size: 15px;
             font-weight: 800;
             letter-spacing: 2px;
-            transition: .25s ease;
-            box-shadow: inset 0 0 20px rgba(255,255,255,.02);
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
         .button:hover {
             transform: translateY(-3px);
+
+            background: rgba(90, 40, 255, 0.18);
+
             border-color: #8b5cff;
-            background: rgba(100,40,255,.15);
+
             box-shadow:
-                0 0 20px rgba(80,60,255,.25),
-                inset 0 0 20px rgba(180,0,255,.08);
+                0 0 20px rgba(70, 60, 255, 0.30),
+                inset 0 0 20px rgba(180, 0, 255, 0.08);
         }
 
+        /* MAIN BUTTON */
+
         .button.primary {
-            background: linear-gradient(90deg, #073cff, #7b00ff);
-            border-color: #6c5cff;
-            box-shadow:
-                0 0 20px rgba(50,70,255,.35),
-                0 0 40px rgba(150,0,255,.18);
             padding: 20px 24px;
+
             font-size: 16px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #073cff,
+                    #7b00ff
+                );
+
+            border-color: #665cff;
+
+            box-shadow:
+                0 0 20px rgba(50, 70, 255, 0.40),
+                0 0 40px rgba(150, 0, 255, 0.20);
         }
 
         .button.primary:hover {
-            background: linear-gradient(90deg, #164dff, #941cff);
+            background:
+                linear-gradient(
+                    90deg,
+                    #164dff,
+                    #941cff
+                );
+
             box-shadow:
-                0 0 30px rgba(60,80,255,.55),
-                0 0 50px rgba(170,0,255,.30);
+                0 0 30px rgba(60, 80, 255, 0.60),
+                0 0 50px rgba(170, 0, 255, 0.35);
         }
+
+        /* FOOTER */
 
         .footer {
             margin-top: 40px;
+
             color: #444;
+
             font-size: 10px;
             letter-spacing: 3px;
         }
 
+        /* MOBILE */
+
         @media (max-width: 480px) {
+
             body {
                 padding: 25px 18px;
             }
@@ -118,13 +186,24 @@
                 letter-spacing: 3px;
                 margin-bottom: 30px;
             }
+
+            .button {
+                padding: 16px 20px;
+            }
+
+            .button.primary {
+                padding: 18px 20px;
+            }
         }
     </style>
 </head>
 
+
 <body>
 
     <main class="container">
+
+        <!-- LKSF LOGO -->
 
         <img
             src="logo.png"
@@ -132,37 +211,60 @@
             class="logo"
         >
 
+
+        <!-- SUBTITLE -->
+
         <div class="subtitle">
             LK Sound Factory
         </div>
 
+
+        <!-- MUSIC LINKS -->
+
         <div class="buttons">
+
+            <!-- MAIN MUSIC BUTTON -->
 
             <a
                 class="button primary"
                 href="https://www.youtube.com/@LKSF-w7j/podcasts"
                 target="_blank"
                 rel="noopener noreferrer">
+
                 LISTEN TO MY MUSIC
+
             </a>
+
+
+            <!-- YOUTUBE -->
 
             <a
                 class="button"
                 href="https://www.youtube.com/@LKSF-w7j/podcasts"
                 target="_blank"
                 rel="noopener noreferrer">
+
                 YOUTUBE
+
             </a>
+
+
+            <!-- TIKTOK -->
 
             <a
                 class="button"
                 href="https://www.tiktok.com/@lksoundfactory00?is_from_webapp=1&sender_device=pc"
                 target="_blank"
                 rel="noopener noreferrer">
+
                 TIKTOK
+
             </a>
 
         </div>
+
+
+        <!-- FOOTER -->
 
         <div class="footer">
             © 2026 LKSF — LK SOUND FACTORY
@@ -172,3 +274,4 @@
 
 </body>
 </html>
+
